@@ -9,8 +9,8 @@ const Checkout = (props) => {
   const [formInputsValidity, setFormInputsValidity] = useState({
     name: true,
     street: true,
-    postalCode: true,
     city: true,
+    postalCode: true,
   });
 
   const nameInputRef = useRef();
@@ -28,21 +28,21 @@ const Checkout = (props) => {
 
     const enteredNameIsValid = !isEmpty(enteredName);
     const enteredStreetIsValid = !isEmpty(enteredStreet);
-    const enteredPostalCodeIsValid = !isFiveChars(enteredPostalCode);
     const enteredCityIsValid = !isEmpty(enteredCity);
+    const enteredPostalCodeIsValid = isFiveChars(enteredPostalCode);
 
     setFormInputsValidity({
       name: enteredNameIsValid,
       street: enteredStreetIsValid,
-      postalCode: enteredPostalCodeIsValid,
       city: enteredCityIsValid,
+      postalCode: enteredPostalCodeIsValid,
     });
 
     const formIsValid =
       enteredNameIsValid &&
       enteredStreetIsValid &&
-      enteredPostalCodeIsValid &&
-      enteredCityIsValid;
+      enteredCityIsValid &&
+      enteredPostalCodeIsValid;
 
     if (!formIsValid) {
       return;
